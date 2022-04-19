@@ -13,7 +13,7 @@ public class CreditCard {
     private String cardNumber;
     @OneToOne
     @JoinColumn(name = "card_holder_id", referencedColumnName = "id")
-    private CardHolder cardHorlder;
+    private CardHolder cardHolder;
     private LocalDate expirationDate;
 
     public CreditCard() {
@@ -24,7 +24,7 @@ public class CreditCard {
         this.id = id;
         this.brand = brand;
         this.cardNumber = cardNumber;
-        this.cardHorlder = cardHolder;
+        this.cardHolder = cardHolder;
         this.expirationDate = expirationDate;
     }
 
@@ -40,8 +40,8 @@ public class CreditCard {
         return cardNumber;
     }
 
-    public CardHolder getCardHorlder() {
-        return cardHorlder;
+    public CardHolder getCardHolder() {
+        return cardHolder;
     }
 
     public LocalDate getExpirationDate() {
