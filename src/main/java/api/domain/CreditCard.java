@@ -1,8 +1,6 @@
 package api.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -13,20 +11,20 @@ public class CreditCard {
     private int id;
     private String brand;
     private String cardNumber;
-    private String cardHolderName;
-    private String cardHolderLastName;
+    @OneToOne
+    @JoinColumn(name = "card_holder_id", referencedColumnName = "id")
+    private CardHolder cardHorlder;
     private LocalDate expirationDate;
 
     public CreditCard() {
     }
 
-    public CreditCard(final int id, final  String brand, final String cardNumber, final String cardHolderName, final String cardHolderLastName,
+    public CreditCard(final int id, final  String brand, final String cardNumber, final CardHolder cardHolder,
                       final LocalDate expirationDate) {
         this.id = id;
         this.brand = brand;
         this.cardNumber = cardNumber;
-        this.cardHolderName = cardHolderName;
-        this.cardHolderLastName = cardHolderLastName;
+        this.cardHorlder = cardHolder;
         this.expirationDate = expirationDate;
     }
 
@@ -42,12 +40,8 @@ public class CreditCard {
         return cardNumber;
     }
 
-    public String getCardHolderName() {
-        return cardHolderName;
-    }
-
-    public String getCardHolderLastName() {
-        return cardHolderLastName;
+    public CardHolder getCardHorlder() {
+        return cardHorlder;
     }
 
     public LocalDate getExpirationDate() {
